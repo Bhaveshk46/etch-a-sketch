@@ -2,15 +2,12 @@ const div = document.createElement("div");
 div.classList.add("container");
 document.body.appendChild(div);
 
-function grid() {
+function grid(size = 16) {
 
     div.innerHTML = "";
 
-    const size = parseInt(prompt("Enter the size of grid"));
-
-    if (size > 0 && size <= 100) {
-        const total = size * size;
-
+    const total = size *size;
+    
         for (let i = 1; i <= total; i++) {
             const box = document.createElement("div");
             box.classList.add("box");
@@ -35,9 +32,14 @@ function grid() {
         }
     }
 
-    else {
-        alert("Please enter a valid size, which is less than 100!");
-    }
-}
+ grid();
 
-document.querySelector("button").addEventListener("click", grid);
+document.querySelector("button").addEventListener("click", ()=>{
+    const size = parseInt(prompt("Enter grid size (max 100)"));
+
+    if (size > 0 && size <= 100) {
+        grid(size);
+    } else {
+        alert("Please enter a valid size less than or equal to 100!");
+    }
+});
